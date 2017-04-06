@@ -1,0 +1,42 @@
+{% load static from staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Appointment service - {% block meta_title %}{% endblock meta_title %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href={{ PORTAL_URL }}{% static "main.css" %}>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-default">
+            <h4 class="navbar-text">APPOINTMENT SERVICE</h4>
+            <ul class="nav navbar-nav">
+                <li><a href="{% url "new_appointment" %}">Create new appointment</a></li>
+                <li><a href="{% url "submitted" %}">Submitted</a></li>
+            </ul>
+            <ul class="nav navbar-nav pull-right">
+                {% if user.is_authenticated %}
+                    <li><a href="{% url "profile" %}">{{ user.username }}</a></li>
+                    <li><a href="{% url "users:auth_logout" %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url "users:auth_login" %}">Login</a></li>
+                    <li><a href="{% url "users:registration_register" %}">Register</a></li>
+                {% endif %}
+            </ul>
+            </ul>
+        </nav>
+    {% block content %}
+      <div>
+        <h4>List of appointments</h4>
+        <ul>
+            {% for appointment in object_list %}
+            <li><a href="{% url "appointment" appointment.id %}">{{ appointment.title }}</a></li>
+            {% endfor %}
+        </ul>
+      </div>
+    {% endblock content %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,5 @@
+Django==1.11
+psycopg2==2.7.1
+django-registration-redux==1.4
+djangorestframework==3.6.2
+

@@ -1,0 +1,20 @@
+{% extends "index.html" %}
+
+{% block meta_title %}Appointment info{% endblock meta_title %}
+
+{% block content %}
+
+    <div>
+        <h4>List of submitted appointments</h4>
+
+            {% for appointment in object_list %}
+            <p>Date: {{ appointment.date }}</p>
+            <p>Time range: {{ appointment.time_range }}</p>
+            <p>Full name: {{ appointment.full_name }}</p>
+            <p>Email: {{ appointment.email }}</p>
+            <hr>
+            {% endfor %}
+
+    </div>
+
+{% endblock content %}

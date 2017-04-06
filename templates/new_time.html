@@ -1,0 +1,15 @@
+{% extends "index.html" %}
+
+{% block meta_title %}New date{% endblock meta_title %}
+
+{% block content %}
+
+    <div style="margin-bottom: 20px">
+        <form method="post" action="{% url 'new_time' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+          <input type="submit" value="Submit" class="btn"/>
+        </form>
+    </div>
+
+{% endblock content %}
